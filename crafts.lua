@@ -35,3 +35,22 @@ minetest.register_craft({
 		{"default:steel_ingot", "default:steelblock", "default:steel_ingot"},
 	},
 })
+
+-- Scrubber part recipe
+
+minetest.register_craft({
+	type = "cooking",
+	output = "spacesuit:caustic_lime",
+	recipe = "bonemeal:bonemeal",
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = "spacesuit:scrubber",
+	recipe = {
+		"pipeworks:tube_1",
+		"technic:rubber",
+		"charcoal:charcoal_lump",
+		"vacuum:caustic_lime"
+	},
+})
