@@ -14,6 +14,10 @@ minetest.register_globalstep(function(dtime)
 			local has_chestplate = armor_inv:contains_item("armor", "spacesuit:chestplate")
 			local has_pants = armor_inv:contains_item("armor", "spacesuit:pants")
 			local has_boots = armor_inv:contains_item("armor", "spacesuit:boots")
+                        local has_scrubber = armor_inv:contains_item("armor", "spacesuit:scrubber")
+                        -- Update for armor wear
+                        local scrubber_multiplier = 1
+                        if has_scrubber then scrubber_multiplier = 0.25 end
 
 			local has_full_suit = has_helmet and has_chestplate and has_pants and has_boots
 
@@ -28,7 +32,7 @@ minetest.register_globalstep(function(dtime)
 					if not stack:is_empty() then
 						local name = stack:get_name()
 						if name:sub(1, 10) == "spacesuit:" then
-							local use = minetest.get_item_group(name, "armor_use") * timer or 0
+							local use = minetest.get_item_group(name, "armor_use") * timer * scrubber_multiplier or 0
 							armor:damage(player, i, stack, use)
 						end
 					end

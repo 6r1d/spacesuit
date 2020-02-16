@@ -32,6 +32,11 @@ minetest.register_tool("spacesuit:boots", {
 	wear_represents = "spacesuit_wear",
 })
 
+-- Extend armor groups
+-- TODO move armor class registration to a more appropriate place
+-- TODO ask to extend 3d_armor mod with an armor type registration function
+armor.elements[#armor.elements+1] = "backpack"
+
 -- Scrubber and related materials
 
 minetest.register_craftitem("spacesuit:caustic_lime", {
@@ -42,7 +47,10 @@ minetest.register_craftitem("spacesuit:caustic_lime", {
 minetest.register_tool("spacesuit:scrubber", {
 	description = "CO2 scrubber",
 	inventory_image = "scrubber.png",
-	groups = {armor_use=spacesuit.armor_use, not_repaired_by_anvil=1}
+	groups = {armor_backpack=1, armor_use=spacesuit.armor_use, not_repaired_by_anvil=1}
 })
+
+
+
 
 
